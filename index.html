@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resell ITA - Reselling & Fornitori</title>
+    <link rel="icon" type="image/png" href="logo_resell_ita.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark: #0a0a0a;
+            --darker: #000000;
+            --light: #ffffff;
+            --accent: #00d4ff;
+            --accent-dark: #0099cc;
+            --text-muted: #b0b0b0;
+            --bg-card: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header e Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent) 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);
+            padding: 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #00ff88 100%);
+            color: var(--darker);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            animation: slideUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        /* Chi Siamo */
+        #chi-siamo {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .chi-siamo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .chi-siamo-text h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .chi-siamo-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .feature-icon {
+            color: var(--accent);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            color: var(--light);
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Cosa Facciamo */
+        #cosa-facciamo {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 212, 255, 0.05) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(0, 212, 255, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Fornitori */
+        #fornitori {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .suppliers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .suppliers-grid-featured {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .supplier-card.featured {
+            position: relative;
+            max-width: 350px;
+            border: 3px solid var(--accent);
+        }
+
+        .supplier-card.featured::before {
+            content: 'PIÙ SCELTO';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent) 0%, #00ff88 100%);
+            color: var(--darker);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .suppliers-grid-other {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .supplier-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(0, 212, 255, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .supplier-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+        }
+
+        .supplier-icon {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .supplier-card h3 {
+            color: var(--light);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .supplier-price {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .supplier-card button {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .supplier-card button:hover {
+            background: var(--accent);
+            color: var(--darker);
+        }
+
+        /* Come Funziona */
+        #come-funziona {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 212, 255, 0.05) 100%);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, #00ff88 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--darker);
+            z-index: 1;
+        }
+
+        .step:nth-child(1)::before {
+            content: '1';
+            font-size: 1.5rem;
+        }
+
+        .step:nth-child(2)::before {
+            content: '2';
+            font-size: 1.5rem;
+        }
+
+        .step:nth-child(3)::before {
+            content: '3';
+            font-size: 1.5rem;
+        }
+
+        .step:nth-child(4)::before {
+            content: '4';
+            font-size: 1.5rem;
+        }
+
+        .step h3 {
+            color: var(--light);
+            margin: 2rem 0 1rem 0;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Contatti */
+        #contatti {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            color: var(--accent);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        .contact-item h4 {
+            color: var(--light);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 2px solid var(--accent);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+                border-bottom: 2px solid var(--accent);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .chi-siamo-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .steps,
+            .suppliers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">RESELL ITA</div>
+            <ul>
+                <li><a href="#chi-siamo">Chi Siamo</a></li>
+                <li><a href="#cosa-facciamo">Cosa Facciamo</a></li>
+                <li><a href="#fornitori">Fornitori</a></li>
+                <li><a href="#come-funziona">Come Funziona</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Reselling & Fornitori</h1>
+            <p>La piattaforma che connette i migliori fornitori con i reseller. Prodotti di qualità 1:1 a prezzi competitivi.</p>
+            <a href="#cosa-facciamo" class="cta-button">Scopri di Più</a>
+        </div>
+    </section>
+
+    <!-- Chi Siamo -->
+    <section id="chi-siamo">
+        <h2>Chi Siamo</h2>
+        <p class="section-subtitle">La tua soluzione completa per il reselling online</p>
+        
+        <div class="chi-siamo-content">
+            <div class="chi-siamo-text">
+                <h3>Resell ITA è:</h3>
+                <p>Una piattaforma dedicata al reselling online che connette i migliori fornitori con i reseller. Offriamo prodotti di qualità 1:1 con spedizione tracciabile e veloce, tutto al 100% affidabile.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Fornitori Selezionati</h4>
+                            <p>Migliori fornitori per qualità-prezzo</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>100% Affidabili</h4>
+                            <p>Prodotti garantiti e verificati</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <div class="feature-text">
+                            <h4>Spedizione Tracciabile</h4>
+                            <p>Consegna veloce e sicura</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(0, 212, 255, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid rgba(0, 212, 255, 0.3); text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Guadagna con il reselling. Scegli dai migliori fornitori e rivendi su piattaforme come Vinted, eBay e molto altro ancora.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cosa Facciamo -->
+    <section id="cosa-facciamo">
+        <h2>Cosa Facciamo</h2>
+        <p class="section-subtitle">Servizi completi per il tuo business di reselling</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📦</div>
+                <h3>Fornitori Verificati</h3>
+                <p>Accesso a fornitori selezionati con prodotti di qualità 1:1, disponibilità garantita e spedizione tracciabile.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Aiuto ai Nuovi Reseller</h3>
+                <p>Supporto completo per chi inizia: lista fornitori, consigli, feedback e risultati di vendita verificati.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">⭐</div>
+                <h3>Feedback e Recensioni</h3>
+                <p>Comunità attiva con feedback verificati, recensioni dettagliate e risultati di guadagni trasparenti.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fornitori -->
+    <section id="fornitori">
+        <h2>Fornitori</h2>
+        <p class="section-subtitle">I migliori fornitori per categoria</p>
+        
+        <div class="suppliers-grid-featured">
+            <div class="supplier-card featured">
+                <div class="supplier-icon">📦</div>
+                <h3>Pack Completo</h3>
+                <div class="supplier-price">20€</div>
+                <button>Acquista</button>
+            </div>
+        </div>
+
+        <div class="suppliers-grid-other">
+            <div class="supplier-card">
+                <div class="supplier-icon">👕</div>
+                <h3>Abbigliamento</h3>
+                <div class="supplier-price">15€</div>
+                <button>Acquista</button>
+            </div>
+            
+            <div class="supplier-card">
+                <div class="supplier-icon">⚽</div>
+                <h3>Maglie da Calcio</h3>
+                <div class="supplier-price">10€</div>
+                <button>Acquista</button>
+            </div>
+
+            <div class="supplier-card">
+                <div class="supplier-icon">🎧</div>
+                <h3>Elettronica</h3>
+                <div class="supplier-price">10€</div>
+                <button>Acquista</button>
+            </div>
+
+            <div class="supplier-card">
+                <div class="supplier-icon">💐</div>
+                <h3>Profumi</h3>
+                <div class="supplier-price">10€</div>
+                <button>Acquista</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Come Funziona -->
+    <section id="come-funziona">
+        <h2>Come Funziona</h2>
+        <p class="section-subtitle">Quattro semplici step per iniziare</p>
+        
+        <div class="steps">
+            <div class="step">
+                <h3>Scegli il Fornitore</h3>
+                <p>Scorri la lista dei fornitori disponibili e scegli quello che fa per te in base ai prodotti e ai prezzi.</p>
+            </div>
+            
+            <div class="step">
+                <h3>Acquista i Prodotti</h3>
+                <p>Ordina i prodotti direttamente dal fornitore a prezzi competitivi. Spedizione tracciabile garantita.</p>
+            </div>
+            
+            <div class="step">
+                <h3>Rivendi Online</h3>
+                <p>Rivendi i tuoi prodotti su Vinted, eBay o altre piattaforme di rivendita e guadagna subito.</p>
+            </div>
+
+            <div class="step">
+                <h3>Condividi Risultati</h3>
+                <p>Condividi i tuoi feedback e risultati nella community. Aiuta altri reseller e costruisci credibilità.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti">
+        <h2>Contatti</h2>
+        <p class="section-subtitle">Rimani in contatto con noi</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <h4>Instagram</h4>
+                        <p>@resell.itaa</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Seguici per le ultime novità e fornitori</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div>
+                        <h4>Direct Message</h4>
+                        <p>Scrivi in DM per info sui fornitori</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Rispondiamo in tempo reale</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">❓</div>
+                    <div>
+                        <h4>Come Funziona</h4>
+                        <p>Guida completa nel nostro profilo</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Tutte le risposte che cerchi</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div>
+                        <h4>DM per Info</h4>
+                        <p>Per qualsiasi domanda scrivici!</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Disponibili 24/7 per aiutarti</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(0, 212, 255, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid rgba(0, 212, 255, 0.3); text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; min-height: 300px;">
+                <div style="font-size: 2.5rem;">📲</div>
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 1rem;">Hai Domande?</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Contattaci su Instagram! Ti guideremo attraverso tutto il processo di reselling.</p>
+                    <a href="https://instagram.com/resell.itaa" target="_blank" class="cta-button" style="display: inline-block;">Scrivi su Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Resell ITA. Tutti i diritti riservati.</p>
+        <p>Reselling & Fornitori - La tua piattaforma di fiducia</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navUl = document.querySelector('nav ul');
+
+        mobileMenu.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .step, .feature, .supplier-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
