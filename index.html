@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resell ITA - Reselling & Fornitori</title>
-    <link rel="icon" type="image/png" href="logo_resell_ita.png">
     <style>
         * {
             margin: 0;
@@ -677,49 +676,99 @@
         <p class="section-subtitle">I migliori fornitori per categoria</p>
         
         <div class="suppliers-grid-featured">
-            <div class="supplier-card featured">
-                <div class="supplier-icon">📦</div>
-                <h3>Pack Completo</h3>
-                <div class="supplier-price">20€</div>
-                <button>Acquista</button>
-            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="max-width: 350px;" onsubmit="return confirmPayPal()">
+                <div class="supplier-card featured" style="position: relative;">
+                    <div class="supplier-icon">📦</div>
+                    <h3>Pack Completo</h3>
+                    <div class="supplier-price">20€</div>
+                    
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="tuoindirizzoemail@paypal.com">
+                    <input type="hidden" name="item_name" value="Pack Completo - Resell ITA">
+                    <input type="hidden" name="amount" value="20.00">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="no_shipping" value="1">
+                    
+                    <input type="submit" value="Acquista" style="padding: 0.8rem 1.5rem; background: var(--accent); border: 2px solid var(--accent); color: var(--darker); border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-size: 0.9rem; width: 100%; margin-top: 1rem;" onmouseover="this.style.background='#00ff88'" onmouseout="this.style.background='var(--accent)'">
+                </div>
+            </form>
         </div>
 
         <div class="suppliers-grid-other">
-            <div class="supplier-card">
-                <div class="supplier-icon">👕</div>
-                <h3>Abbigliamento</h3>
-                <div class="supplier-price">15€</div>
-                <button>Acquista</button>
-            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return confirmPayPal()">
+                <div class="supplier-card">
+                    <div class="supplier-icon">👕</div>
+                    <h3>Abbigliamento</h3>
+                    <div class="supplier-price">15€</div>
+                    
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="tuoindirizzoemail@paypal.com">
+                    <input type="hidden" name="item_name" value="Abbigliamento - Resell ITA">
+                    <input type="hidden" name="amount" value="15.00">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="no_shipping" value="1">
+                    
+                    <input type="submit" value="Acquista" style="padding: 0.8rem 1.5rem; background: transparent; border: 2px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-size: 0.9rem; width: 100%;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--darker)'" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)'">
+                </div>
+            </form>
             
-            <div class="supplier-card">
-                <div class="supplier-icon">⚽</div>
-                <h3>Maglie da Calcio</h3>
-                <div class="supplier-price">10€</div>
-                <button>Acquista</button>
-            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return confirmPayPal()">
+                <div class="supplier-card">
+                    <div class="supplier-icon">⚽</div>
+                    <h3>Maglie da Calcio</h3>
+                    <div class="supplier-price">10€</div>
+                    
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="tuoindirizzoemail@paypal.com">
+                    <input type="hidden" name="item_name" value="Maglie da Calcio - Resell ITA">
+                    <input type="hidden" name="amount" value="10.00">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="no_shipping" value="1">
+                    
+                    <input type="submit" value="Acquista" style="padding: 0.8rem 1.5rem; background: transparent; border: 2px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-size: 0.9rem; width: 100%;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--darker)'" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)'">
+                </div>
+            </form>
 
-            <div class="supplier-card">
-                <div class="supplier-icon">🎧</div>
-                <h3>Elettronica</h3>
-                <div class="supplier-price">10€</div>
-                <button>Acquista</button>
-            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return confirmPayPal()">
+                <div class="supplier-card">
+                    <div class="supplier-icon">🎧</div>
+                    <h3>Elettronica</h3>
+                    <div class="supplier-price">10€</div>
+                    
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="tuoindirizzoemail@paypal.com">
+                    <input type="hidden" name="item_name" value="Elettronica - Resell ITA">
+                    <input type="hidden" name="amount" value="10.00">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="no_shipping" value="1">
+                    
+                    <input type="submit" value="Acquista" style="padding: 0.8rem 1.5rem; background: transparent; border: 2px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-size: 0.9rem; width: 100%;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--darker)'" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)'">
+                </div>
+            </form>
 
-            <div class="supplier-card">
-                <div class="supplier-icon">💐</div>
-                <h3>Profumi</h3>
-                <div class="supplier-price">10€</div>
-                <button>Acquista</button>
-            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" onsubmit="return confirmPayPal()">
+                <div class="supplier-card">
+                    <div class="supplier-icon">💐</div>
+                    <h3>Profumi</h3>
+                    <div class="supplier-price">10€</div>
+                    
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="tuoindirizzoemail@paypal.com">
+                    <input type="hidden" name="item_name" value="Profumi - Resell ITA">
+                    <input type="hidden" name="amount" value="10.00">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <input type="hidden" name="no_shipping" value="1">
+                    
+                    <input type="submit" value="Acquista" style="padding: 0.8rem 1.5rem; background: transparent; border: 2px solid var(--accent); color: var(--accent); border-radius: 6px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; font-size: 0.9rem; width: 100%;" onmouseover="this.style.background='var(--accent)'; this.style.color='var(--darker)'" onmouseout="this.style.background='transparent'; this.style.color='var(--accent)'">
+                </div>
+            </form>
         </div>
     </section>
 
     <!-- Come Funziona -->
     <section id="come-funziona">
         <h2>Come Funziona</h2>
-        <p class="section-subtitle">Quattro semplici step per iniziare</p>
+        <p class="section-subtitle">Semplice, veloce e sicuro</p>
         
         <div class="steps">
             <div class="step">
@@ -728,18 +777,18 @@
             </div>
             
             <div class="step">
-                <h3>Acquista i Prodotti</h3>
-                <p>Ordina i prodotti direttamente dal fornitore a prezzi competitivi. Spedizione tracciabile garantita.</p>
+                <h3>Effettua il Pagamento</h3>
+                <p>Clicca su "Acquista" e paga in sicurezza tramite PayPal. La transazione è protetta e verificata.</p>
             </div>
             
             <div class="step">
-                <h3>Rivendi Online</h3>
-                <p>Rivendi i tuoi prodotti su Vinted, eBay o altre piattaforme di rivendita e guadagna subito.</p>
+                <h3>Ricevi il File</h3>
+                <p>Dopo la conferma del pagamento, ti manderemo il file del fornitore direttamente via email in pochi minuti.</p>
             </div>
 
             <div class="step">
-                <h3>Condividi Risultati</h3>
-                <p>Condividi i tuoi feedback e risultati nella community. Aiuta altri reseller e costruisci credibilità.</p>
+                <h3>Inizia a Guadagnare</h3>
+                <p>Rivendi i prodotti su Vinted, eBay e altre piattaforme. Guadagna subito con il reselling!</p>
             </div>
         </div>
     </section>
@@ -806,6 +855,10 @@
     </footer>
 
     <script>
+        function confirmPayPal() {
+            return confirm('⚠️ Per acquistare è necessario avere un account PayPal attivo.\n\nSe non hai PayPal, crea un account gratuito su www.paypal.com\n\nProcedi?');
+        }
+
         // Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navUl = document.querySelector('nav ul');
